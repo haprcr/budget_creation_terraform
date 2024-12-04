@@ -1,6 +1,6 @@
-from google.cloud import bigquery
 import json
 import hcl2
+from google.cloud import bigquery
 
 def get_tables_of_business_function(
         bigquery_billing_project_id, 
@@ -13,13 +13,10 @@ def get_tables_of_business_function(
         query = f"""
                 SELECT 
                 l.value as label_value, 
-                ARRAY_AGG(DISTINCT CONCAT("projects/", project.number)) p_list, 
-                count(DISTINCT project.id) AS count_p,
+                ARRAY_AGG(DISTINCT CONCAT("projects/", project.number)) p_list
                 FROM `{bigquery_billing_project_id}.{bigquery_billing_dataset_id}.{bigquery_billing_table_id}` , UNNEST(labels) AS l
                 WHERE l.key = "{label_key}"
                 GROUP BY 1
-                ORDER BY count_p desc
-                LIMIT 4
         """
         
         bq_client = bigquery.Client()
