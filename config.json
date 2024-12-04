@@ -1,0 +1,6 @@
+{
+    "bigquery_billing_project_id": "terraform-375010",
+    "bigquery_billing_dataset_id": "detailed_billing_dataset",
+    "bigquery_billing_table_id": "gcp_billing_export_resource_v1_0125FB_E96DD4_B48BC7",
+    "label_key": "goog-resource-type"
+}
